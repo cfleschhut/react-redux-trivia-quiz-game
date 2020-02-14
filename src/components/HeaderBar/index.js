@@ -1,14 +1,18 @@
 import React from 'react';
 import './styles.scss';
 
-export const HeaderBar = ({ numOfQuestions, questionsAnswered, score }) => (
+export const HeaderBar = ({
+  questionsTotal,
+  numOfQuestionsAnswered,
+  score
+}) => (
   <header className="header-bar">
     <div className="header-bar-container">
       <div className="header-bar-item">
         <div className="progress">
           Questions:
           <span className="score-value">
-            {questionsAnswered}/{numOfQuestions}
+            {numOfQuestionsAnswered}/{questionsTotal}
           </span>
         </div>
       </div>

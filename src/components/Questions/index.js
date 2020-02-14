@@ -1,13 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Choices } from '../Choices';
+import Choices from '../Choices';
 import './styles.scss';
 
-export const Questions = ({
-  questions,
-  questionsAnswered,
-  handleAnswerClick
-}) => (
+export const Questions = ({ questions, questionsAnswered }) => (
   <div className="questions">
     {questions.map((question, questionIndex) => (
       <div
@@ -23,11 +19,7 @@ export const Questions = ({
           dangerouslySetInnerHTML={{ __html: question.question }}
         />
 
-        <Choices
-          question={question}
-          questionIndex={questionIndex}
-          handleAnswerClick={handleAnswerClick}
-        />
+        <Choices question={question} questionIndex={questionIndex} />
       </div>
     ))}
   </div>

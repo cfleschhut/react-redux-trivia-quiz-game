@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classnames from 'classnames';
+import { selectAnswer } from '../../actions';
 import './styles.scss';
 
 class Choices extends Component {
@@ -19,7 +21,7 @@ class Choices extends Component {
     const {
       question: { choices, correct_answer },
       questionIndex,
-      handleAnswerClick
+      selectAnswer
     } = this.props;
     const { selectedChoiceIndex, hasSelected } = this.state;
 
@@ -34,13 +36,7 @@ class Choices extends Component {
             })}
             onClick={() => {
               this.setSelectedAnswer(answerIndex);
-
-              handleAnswerClick(
-                questionIndex,
-                answerIndex,
-                answer,
-                correct_answer
-              );
+              selectAnswer(questionIndex, answerIndex);
             }}
           >
             <span dangerouslySetInnerHTML={{ __html: answer }} />
@@ -51,4 +47,4 @@ class Choices extends Component {
   }
 }
 
-export { Choices };
+export default connect(null, { selectAnswer })(Choices);
