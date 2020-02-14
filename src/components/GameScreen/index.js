@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HeaderBar } from '../HeaderBar';
+import { LoadingSpinner } from '../Loading';
 import './styles.scss';
 
 const getApiUrl = () => {
@@ -43,7 +44,7 @@ class GameScreen extends Component {
   }
 
   render() {
-    const { questions, questionsAnswered, score } = this.state;
+    const { questions, loading, questionsAnswered, score } = this.state;
 
     return (
       <div className="GameScreen">
@@ -52,6 +53,8 @@ class GameScreen extends Component {
           questionsAnswered={questionsAnswered.length}
           score={score}
         />
+
+        {loading ? <LoadingSpinner /> : <div></div>}
       </div>
     );
   }
