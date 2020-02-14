@@ -1,0 +1,11 @@
+.question {
+  &:not(:last-child) {
+    margin: 0 0 4em;
+    border-bottom: 1px solid hsl(0, 0%, 93%);
+  }
+}
+
+.question-title {
+  font-size: 20px;
+  font-weight: 600;
+}

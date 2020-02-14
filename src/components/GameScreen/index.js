@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { HeaderBar } from '../HeaderBar';
 import { LoadingSpinner } from '../Loading';
+import { Questions } from '../Questions';
 import './styles.scss';
 
 const getApiUrl = () => {
   const API_BASE_URL = 'https://opentdb.com/api.php';
   const params = Object.entries({
-    amount: 3,
+    amount: 5,
     category: 9,
     difficulty: 'easy',
     type: 'multiple'
@@ -74,7 +75,7 @@ class GameScreen extends Component {
           score={score}
         />
 
-        {loading ? <LoadingSpinner /> : <div></div>}
+        {loading ? <LoadingSpinner /> : <Questions questions={questions} />}
       </div>
     );
   }
