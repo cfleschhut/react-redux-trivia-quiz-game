@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HeaderBar } from '../HeaderBar';
 import { LoadingSpinner } from '../Loading';
 import { Questions } from '../Questions';
+import { ModalCompleted } from '../Modal';
 import './styles.scss';
 
 const getApiUrl = () => {
@@ -81,6 +82,9 @@ class GameScreen extends Component {
 
   render() {
     const { questions, loading, questionsAnswered, score } = this.state;
+    const completed =
+      !!questionsAnswered.length &&
+      questionsAnswered.length === questions.length;
 
     return (
       <div className="GameScreen">
@@ -93,11 +97,15 @@ class GameScreen extends Component {
         {loading ? (
           <LoadingSpinner />
         ) : (
-          <Questions
-            questions={questions}
-            questionsAnswered={questionsAnswered}
-            handleAnswerClick={this.handleAnswerClick}
-          />
+          <>
+            <Questions
+              questions={questions}
+              questionsAnswered={questionsAnswered}
+              handleAnswerClick={this.handleAnswerClick}
+            />
+
+            {completed && <ModalCompleted />}
+          </>
         )}
       </div>
     );
