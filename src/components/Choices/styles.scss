@@ -1,0 +1,61 @@
+$brand-color: hsl(236, 64%, 54%);
+$green: hsl(90, 40%, 60%);
+$red: hsl(360, 60%, 70%);
+
+.choices {
+  margin: 0 0 4.5em;
+  padding: 0;
+  list-style-type: upper-alpha;
+  list-style-position: inside;
+}
+
+.choice {
+  position: relative;
+  margin: 0 0 10px 0;
+  padding: 13px 15px;
+  font-size: 16px;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-radius: 3px;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+
+  span {
+    margin-left: 0.5em;
+    font-weight: 500;
+  }
+
+  &:after {
+    position: absolute;
+    right: 25px;
+  }
+
+  &:hover {
+    color: darken($brand-color, 15%);
+    border-color: $brand-color;
+    box-shadow: 0 2px 10px -5px $brand-color;
+  }
+
+  &.selected-choice {
+    color: darken($red, 35%);
+    border-color: $red;
+    background: lighten($red, 20%);
+    box-shadow: none;
+
+    &:after {
+      content: '✘';
+    }
+  }
+
+  &.selected-correctly {
+    color: darken($green, 35%);
+    border-color: $green;
+    background: lighten($green, 30%);
+    box-shadow: 0 2px 10px -5px hsl(90, 50%, 70%);
+
+    &:after {
+      content: '✔';
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Choices } from '../Choices';
 import './styles.scss';
 
 export const Questions = ({ questions }) => (
@@ -9,6 +10,8 @@ export const Questions = ({ questions }) => (
           className="question-title"
           dangerouslySetInnerHTML={{ __html: question.question }}
         />
+
+        <Choices question={question} questionIndex={questionIndex} />
       </div>
     ))}
   </div>
