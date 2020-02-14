@@ -3,9 +3,19 @@
     margin: 0 0 4em;
     border-bottom: 1px solid hsl(0, 0%, 93%);
   }
+
+  &.question-answered {
+    .choices {
+      pointer-events: none;
+    }
+  }
 }
 
 .question-title {
   font-size: 20px;
   font-weight: 600;
+
+  .question-answered & {
+    color: hsla(0, 0%, 0%, 0.4);
+  }
 }

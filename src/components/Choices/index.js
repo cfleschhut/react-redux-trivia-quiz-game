@@ -17,7 +17,9 @@ class Choices extends Component {
 
   render() {
     const {
-      question: { choices, correct_answer }
+      question: { choices, correct_answer },
+      questionIndex,
+      handleAnswerClick
     } = this.props;
     const { selectedChoiceIndex, hasSelected } = this.state;
 
@@ -30,7 +32,16 @@ class Choices extends Component {
               'selected-choice': selectedChoiceIndex === answerIndex,
               'selected-correctly': hasSelected && answer === correct_answer
             })}
-            onClick={() => this.setSelectedAnswer(answerIndex)}
+            onClick={() => {
+              this.setSelectedAnswer(answerIndex);
+
+              handleAnswerClick(
+                questionIndex,
+                answerIndex,
+                answer,
+                correct_answer
+              );
+            }}
           >
             <span dangerouslySetInnerHTML={{ __html: answer }} />
           </li>

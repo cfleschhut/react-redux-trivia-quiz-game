@@ -3,4 +3,17 @@
   font-weight: 400;
   font-style: italic;
   text-align: center;
+  animation: loading 800ms infinite;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 1;
+  }
 }

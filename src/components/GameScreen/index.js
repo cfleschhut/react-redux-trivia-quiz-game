@@ -7,7 +7,7 @@ import './styles.scss';
 const getApiUrl = () => {
   const API_BASE_URL = 'https://opentdb.com/api.php';
   const params = Object.entries({
-    amount: 5,
+    amount: 4,
     category: 9,
     difficulty: 'easy',
     type: 'multiple'
@@ -64,6 +64,21 @@ class GameScreen extends Component {
     ];
   }
 
+  handleAnswerClick = (questionIndex, answerIndex, answer, correct_answer) => {
+    console.log(questionIndex, answerIndex, answer, correct_answer);
+
+    this.setState(state => ({
+      questionsAnswered: [
+        ...state.questionsAnswered,
+        {
+          question: questionIndex,
+          answer: answerIndex
+        }
+      ],
+      score: state.score + (answer === correct_answer ? 10 : 0)
+    }));
+  };
+
   render() {
     const { questions, loading, questionsAnswered, score } = this.state;
 
@@ -75,7 +90,15 @@ class GameScreen extends Component {
           score={score}
         />
 
-        {loading ? <LoadingSpinner /> : <Questions questions={questions} />}
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <Questions
+            questions={questions}
+            questionsAnswered={questionsAnswered}
+            handleAnswerClick={this.handleAnswerClick}
+          />
+        )}
       </div>
     );
   }
