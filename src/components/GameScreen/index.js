@@ -36,11 +36,31 @@ class GameScreen extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState(() => ({
-          questions: data.results,
+          questions: this.amendChoices(data.results),
           loading: false
         }));
       })
       .catch(e => console.log(e));
+  }
+
+  amendChoices(questions) {
+    return questions.map(question => ({
+      ...question,
+      choices: this.getChoices(question)
+    }));
+  }
+
+  getChoices(question) {
+    const { correct_answer, incorrect_answers } = question;
+    const randomPosition = Math.floor(
+      Math.random() * (incorrect_answers.length + 1)
+    );
+
+    return [
+      ...incorrect_answers.slice(0, randomPosition),
+      correct_answer,
+      ...incorrect_answers.slice(randomPosition)
+    ];
   }
 
   render() {
