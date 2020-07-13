@@ -1,4 +1,4 @@
-import * as types from '../contants/actionTypes';
+import * as types from '../constants/actionTypes';
 
 const INITIAL_STATE = {
   questions: [],
