@@ -22,5 +22,5 @@ https://trivia-quiz-game-cf.surge.sh/
 
 ### Future improvements
 
-- [ ] Add TypeScript
+- [x] Add TypeScript
 - [ ] Add more tests

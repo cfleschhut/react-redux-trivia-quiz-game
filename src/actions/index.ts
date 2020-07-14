@@ -1,21 +1,20 @@
 import * as types from '../constants/actionTypes';
-
-const getApiUrl = () => {
-  const API_BASE_URL = 'https://opentdb.com/api.php';
-  const params = Object.entries({
-    amount: 4,
-    category: 9,
-    difficulty: 'easy',
-    type: 'multiple'
-  })
-    .map(([key, value], i) => `${i === 0 ? '?' : '&'}${key}=${value}`)
-    .join('');
-
-  return `${API_BASE_URL}${params}`;
-};
+import { getApiUrl } from '../api';
+import {
+  AnswerObject,
+  FetchQuestionsRequestAction,
+  FetchQuestionsSuccessAction,
+  SelectAnswerAction,
+  ResetGameAction
+} from '../types';
+import { Dispatch } from 'redux';
 
 export const fetchQuestions = () => {
-  return (dispatch: any) => {
+  return (
+    dispatch: Dispatch<
+      FetchQuestionsRequestAction | FetchQuestionsSuccessAction
+    >
+  ) => {
     dispatch({ type: types.QUESTIONS_FETCH_REQUEST, loading: true });
 
     fetch(getApiUrl())
@@ -31,18 +30,17 @@ export const fetchQuestions = () => {
   };
 };
 
-export const selectAnswer = (questionIndex: number, answerIndex: number) => {
-  return {
-    type: types.ANSWER_SELECTED,
-    payload: {
-      questionIndex,
-      answerIndex
-    }
-  };
-};
+export const selectAnswer = ({
+  questionIndex,
+  answerIndex
+}: AnswerObject): SelectAnswerAction => ({
+  type: types.ANSWER_SELECTED,
+  payload: {
+    questionIndex,
+    answerIndex
+  }
+});
 
-export const resetGame = () => {
-  return {
-    type: types.GAME_RESET
-  };
-};
+export const resetGame = (): ResetGameAction => ({
+  type: types.GAME_RESET
+});

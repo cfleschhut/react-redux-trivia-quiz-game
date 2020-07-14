@@ -1,16 +1,19 @@
 import * as types from '../constants/actionTypes';
+import {
+  GameState,
+  Question,
+  FetchQuestionsRequestAction,
+  FetchQuestionsSuccessAction,
+  SelectAnswerAction,
+  ResetGameAction
+} from '../types';
+// import { AppState } from '../store';
 
-const INITIAL_STATE = {
+const INITIAL_STATE: GameState = {
   questions: [],
   loading: false,
   questionsAnswered: [],
   score: 0
-};
-
-type Question = {
-  choices: string[];
-  correct_answer: string;
-  incorrect_answers: string[];
 };
 
 const amendChoices = (questions: Question[]) => {
@@ -26,7 +29,15 @@ const amendChoices = (questions: Question[]) => {
   }));
 };
 
-export const gameReducer = (state = INITIAL_STATE, action: any): any => {
+export const gameReducer = (
+  state = INITIAL_STATE,
+  // action:
+  //   | SelectAnswerAction
+  //   | ResetGameAction
+  //   | FetchQuestionsRequestAction
+  //   | FetchQuestionsSuccessAction
+  action: any
+): GameState => {
   switch (action.type) {
     case types.QUESTIONS_FETCH_REQUEST:
       return {
@@ -52,8 +63,8 @@ export const gameReducer = (state = INITIAL_STATE, action: any): any => {
         questionsAnswered: [
           ...state.questionsAnswered,
           {
-            question: questionIndex,
-            answer: answerIndex
+            questionIndex,
+            answerIndex
           }
         ],
         score: state.score + (answer === question.correct_answer ? 10 : 0)

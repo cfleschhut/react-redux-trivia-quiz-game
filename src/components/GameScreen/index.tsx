@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { resetGame, fetchQuestions } from '../../actions';
+import { GameState } from '../../types';
 import { HeaderBar } from '../HeaderBar';
 import { LoadingSpinner } from '../Loading';
 import { Questions } from '../Questions';
 import { ModalCompleted } from '../Modal';
 import './styles.scss';
 
-type GameScreenProps = {
-  questions: [];
-  loading: boolean;
-  questionsAnswered: [];
-  score: number;
+type GameScreenProps = GameState & {
   resetGame: any;
   fetchQuestions: any;
 };
 
-class GameScreen extends Component<GameScreenProps, {}> {
+class GameScreen extends Component<GameScreenProps> {
   componentDidMount() {
     const { resetGame, fetchQuestions } = this.props;
 
@@ -56,21 +53,14 @@ class GameScreen extends Component<GameScreenProps, {}> {
   }
 }
 
-const mapStateToProps = (state: {
-  questions: [];
-  loading: boolean;
-  questionsAnswered: [];
-  score: number;
-}) => ({
+const mapStateToProps = (state: GameState) => ({
   questions: state.questions,
   loading: state.loading,
   questionsAnswered: state.questionsAnswered,
   score: state.score
 });
 
-const mapDispatchToProps = {
+export default connect(mapStateToProps, {
   resetGame,
   fetchQuestions
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(GameScreen);
+})(GameScreen);

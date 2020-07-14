@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import { Question, AnswerObject, SelectAnswerAction } from '../../types';
 import { selectAnswer } from '../../actions';
 import './styles.scss';
-
-type Question = {
-  choices: string[];
-  correct_answer: string;
-};
 
 type ChoicesProps = {
   question: Question;
   questionIndex: number;
-  selectAnswer: any;
+  selectAnswer: ({
+    questionIndex,
+    answerIndex
+  }: AnswerObject) => SelectAnswerAction;
 };
 
-class Choices extends Component<ChoicesProps, {}> {
+class Choices extends Component<ChoicesProps> {
   state = {
     selectedChoiceIndex: null,
     hasSelected: false
@@ -47,7 +46,7 @@ class Choices extends Component<ChoicesProps, {}> {
             })}
             onClick={() => {
               this.setSelectedAnswer(answerIndex);
-              selectAnswer(questionIndex, answerIndex);
+              selectAnswer({ questionIndex, answerIndex });
             }}
           >
             <span dangerouslySetInnerHTML={{ __html: answer }} />

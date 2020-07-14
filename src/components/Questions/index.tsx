@@ -1,17 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
+import { Question, AnswerObject } from '../../types';
 import Choices from '../Choices';
 import './styles.scss';
 
-type Question = {
-  choices: string[];
-  correct_answer: string;
-  question: string;
-};
-
 type QuestionsProps = {
-  questions: [];
-  questionsAnswered: [];
+  questions: Question[];
+  questionsAnswered: AnswerObject[];
 };
 
 export const Questions = ({ questions, questionsAnswered }: QuestionsProps) => (
@@ -21,8 +16,7 @@ export const Questions = ({ questions, questionsAnswered }: QuestionsProps) => (
         key={questionIndex}
         className={classnames('question', {
           'question-answered': questionsAnswered.find(
-            (answerObj: { question: number }) =>
-              answerObj.question === questionIndex
+            answerObj => answerObj.questionIndex === questionIndex
           )
         })}
       >
