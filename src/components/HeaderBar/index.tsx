@@ -5,7 +5,7 @@ export const HeaderBar = ({
   questionsTotal,
   numOfQuestionsAnswered,
   score
-}) => (
+}: any) => (
   <header className="header-bar">
     <div className="header-bar-container">
       <div className="header-bar-item">

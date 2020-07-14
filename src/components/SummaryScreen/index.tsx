@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from '../Button';
 import './styles.scss';
 
-const SummaryScreen = ({ score, resetGame }) => (
+const SummaryScreen = ({ score, resetGame }: any) => (
   <div className="SummaryScreen">
     <h2 className="headline">
       Congratulations!{' '}
@@ -20,7 +20,7 @@ const SummaryScreen = ({ score, resetGame }) => (
   </div>
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   score: state.score
 });
 

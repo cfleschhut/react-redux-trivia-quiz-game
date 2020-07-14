@@ -15,7 +15,7 @@ const getApiUrl = () => {
 };
 
 export const fetchQuestions = () => {
-  return dispatch => {
+  return (dispatch: any) => {
     dispatch({ type: types.QUESTIONS_FETCH_REQUEST, loading: true });
 
     fetch(getApiUrl())
@@ -31,7 +31,7 @@ export const fetchQuestions = () => {
   };
 };
 
-export const selectAnswer = (questionIndex, answerIndex) => {
+export const selectAnswer = (questionIndex: any, answerIndex: any) => {
   return {
     type: types.ANSWER_SELECTED,
     payload: {

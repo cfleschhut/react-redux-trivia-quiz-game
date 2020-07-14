@@ -9,12 +9,14 @@ import './styles.scss';
 
 class GameScreen extends Component {
   componentDidMount() {
-    this.props.resetGame();
-    this.props.fetchQuestions();
+    const { resetGame, fetchQuestions }: any = this.props;
+
+    resetGame();
+    fetchQuestions();
   }
 
   render() {
-    const { questions, loading, questionsAnswered, score } = this.props;
+    const { questions, loading, questionsAnswered, score }: any = this.props;
     const completed =
       !!questionsAnswered.length &&
       questionsAnswered.length === questions.length;
@@ -44,7 +46,7 @@ class GameScreen extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
   questions: state.questions,
   loading: state.loading,
   questionsAnswered: state.questionsAnswered,

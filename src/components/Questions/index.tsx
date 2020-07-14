@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import Choices from '../Choices';
 import './styles.scss';
 
-export const Questions = ({ questions, questionsAnswered }) => (
+export const Questions = ({ questions, questionsAnswered }: any) => (
   <div className="questions">
-    {questions.map((question, questionIndex) => (
+    {questions.map((question: any, questionIndex: any) => (
       <div
         key={questionIndex}
         className={classnames('question', {
           'question-answered': questionsAnswered.find(
-            answerObj => answerObj.question === questionIndex
+            (answerObj: any) => answerObj.question === questionIndex
           )
         })}
       >
