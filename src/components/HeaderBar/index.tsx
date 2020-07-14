@@ -1,11 +1,17 @@
 import React from 'react';
 import './styles.scss';
 
+type HeaderBarProps = {
+  questionsTotal: number;
+  numOfQuestionsAnswered: number;
+  score: number;
+};
+
 export const HeaderBar = ({
   questionsTotal,
   numOfQuestionsAnswered,
   score
-}: any) => (
+}: HeaderBarProps) => (
   <header className="header-bar">
     <div className="header-bar-container">
       <div className="header-bar-item">

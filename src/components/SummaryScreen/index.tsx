@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Button } from '../Button';
 import './styles.scss';
 
-const SummaryScreen = ({ score, resetGame }: any) => (
+type SummaryScreenProps = {
+  score: number;
+};
+
+const SummaryScreen = ({ score }: SummaryScreenProps) => (
   <div className="SummaryScreen">
     <h2 className="headline">
       Congratulations!{' '}
@@ -20,7 +24,7 @@ const SummaryScreen = ({ score, resetGame }: any) => (
   </div>
 );
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: { score: number }) => ({
   score: state.score
 });
 

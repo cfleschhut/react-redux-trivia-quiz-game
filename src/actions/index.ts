@@ -31,7 +31,7 @@ export const fetchQuestions = () => {
   };
 };
 
-export const selectAnswer = (questionIndex: any, answerIndex: any) => {
+export const selectAnswer = (questionIndex: number, answerIndex: number) => {
   return {
     type: types.ANSWER_SELECTED,
     payload: {

@@ -7,8 +7,14 @@ const INITIAL_STATE = {
   score: 0
 };
 
-const amendChoices = (questions: any) => {
-  const getChoices = ({ correct_answer, incorrect_answers }: any) => {
+type Question = {
+  choices: string[];
+  correct_answer: string;
+  incorrect_answers: string[];
+};
+
+const amendChoices = (questions: Question[]) => {
+  const getChoices = ({ correct_answer, incorrect_answers }: Question) => {
     const randomPosition = Math.floor(
       Math.random() * (incorrect_answers.length + 1)
     );
@@ -20,13 +26,13 @@ const amendChoices = (questions: any) => {
     ];
   };
 
-  return questions.map((question: any) => ({
+  return questions.map((question: Question) => ({
     ...question,
     choices: getChoices(question)
   }));
 };
 
-export const gameReducer: any = (state = INITIAL_STATE, action: any) => {
+export const gameReducer = (state = INITIAL_STATE, action: any): any => {
   switch (action.type) {
     case types.QUESTIONS_FETCH_REQUEST:
       return {
@@ -44,7 +50,7 @@ export const gameReducer: any = (state = INITIAL_STATE, action: any) => {
     case types.ANSWER_SELECTED:
       const { questionIndex, answerIndex } = action.payload;
       const { questions } = state;
-      const question: any = questions[questionIndex];
+      const question: Question = questions[questionIndex];
       const answer = question.choices[answerIndex];
 
       return {

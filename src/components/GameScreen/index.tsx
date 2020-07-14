@@ -7,16 +7,26 @@ import { Questions } from '../Questions';
 import { ModalCompleted } from '../Modal';
 import './styles.scss';
 
-class GameScreen extends Component {
+type GameScreenProps = {
+  questions: [];
+  loading: boolean;
+  questionsAnswered: [];
+  score: number;
+  resetGame: any;
+  fetchQuestions: any;
+};
+
+class GameScreen extends Component<GameScreenProps, {}> {
   componentDidMount() {
-    const { resetGame, fetchQuestions }: any = this.props;
+    const { resetGame, fetchQuestions } = this.props;
 
     resetGame();
     fetchQuestions();
   }
 
   render() {
-    const { questions, loading, questionsAnswered, score }: any = this.props;
+    const { questions, loading, questionsAnswered, score } = this.props;
+
     const completed =
       !!questionsAnswered.length &&
       questionsAnswered.length === questions.length;
@@ -46,7 +56,12 @@ class GameScreen extends Component {
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: {
+  questions: [];
+  loading: boolean;
+  questionsAnswered: [];
+  score: number;
+}) => ({
   questions: state.questions,
   loading: state.loading,
   questionsAnswered: state.questionsAnswered,

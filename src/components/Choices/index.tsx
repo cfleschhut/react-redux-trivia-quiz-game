@@ -4,13 +4,24 @@ import classnames from 'classnames';
 import { selectAnswer } from '../../actions';
 import './styles.scss';
 
-class Choices extends Component<any, {}> {
+type Question = {
+  choices: string[];
+  correct_answer: string;
+};
+
+type ChoicesProps = {
+  question: Question;
+  questionIndex: number;
+  selectAnswer: any;
+};
+
+class Choices extends Component<ChoicesProps, {}> {
   state = {
     selectedChoiceIndex: null,
     hasSelected: false
   };
 
-  setSelectedAnswer(index: any) {
+  setSelectedAnswer(index: number) {
     this.setState(() => ({
       selectedChoiceIndex: index,
       hasSelected: true
@@ -22,12 +33,12 @@ class Choices extends Component<any, {}> {
       question: { choices, correct_answer },
       questionIndex,
       selectAnswer
-    }: any = this.props;
+    } = this.props;
     const { selectedChoiceIndex, hasSelected } = this.state;
 
     return (
       <ul className="choices">
-        {choices.map((answer: any, answerIndex: any) => (
+        {choices.map((answer: string, answerIndex: number) => (
           <li
             key={answerIndex}
             className={classnames('choice', {
