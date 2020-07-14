@@ -14,21 +14,15 @@ type Question = {
 };
 
 const amendChoices = (questions: Question[]) => {
-  const getChoices = ({ correct_answer, incorrect_answers }: Question) => {
-    const randomPosition = Math.floor(
-      Math.random() * (incorrect_answers.length + 1)
-    );
-
-    return [
-      ...incorrect_answers.slice(0, randomPosition),
-      correct_answer,
-      ...incorrect_answers.slice(randomPosition)
-    ];
-  };
+  const getRandomizedChoices = ({
+    correct_answer,
+    incorrect_answers
+  }: Question) =>
+    [correct_answer, ...incorrect_answers].sort(() => 0.5 - Math.random());
 
   return questions.map((question: Question) => ({
     ...question,
-    choices: getChoices(question)
+    choices: getRandomizedChoices(question)
   }));
 };
 
